@@ -1,7 +1,7 @@
 export default function routes($stateProvider) {
   $stateProvider
     .state('home', {
-      url: '/',
+      url: '/:user',
       template: require('./home.html'),
       controller: 'HomeController',
       controllerAs: 'homeController'
