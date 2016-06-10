@@ -7,6 +7,7 @@ export default class HomeController{
       this.todos = ToDoService.getAll();
       this.ToDoService = ToDoService;
       this.editingToDo = null;
+      this.userFilter = {};
     }
     addTodo()
     {
@@ -75,6 +76,17 @@ export default class HomeController{
     canProcessElement(toDo)
     {
         return toDo.user == this.user;
+    }
+    onChangeTab(userTab)
+    {
+        if(userTab == 'all')
+        {
+            this.userFilter = {};
+        }
+        else
+        {
+            this.userFilter = {user: this.user};
+        }
     }
 }
 

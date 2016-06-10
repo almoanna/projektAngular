@@ -2,11 +2,21 @@
     <header>
         <form id="todo-form" ng-submit="homeController.addTodo()">
         	<input id="new-todo" class="form-control text-center" ng-model="homeController.userText" ng-disabled="saving" />
-        </form>    
+        </form>   
+      
+       
+         <ul id="filters">
+                        <li>
+							<a ng-click="homeController.onChangeTab('user')">Uzytkownik</a>
+						</li>
+						<li>
+							<a ng-click="homeController.onChangeTab('all')">Wszyscy</a>
+						</li>
+        </ul>
     </header>    
     
     <section>
-        <li ng-repeat="todo in homeController.todos | filter:homeController.statusFilter" class="list-group">
+        <li ng-repeat="todo in homeController.todos | filter:homeController.statusFilter | filter:homeController.userFilter" class="list-group">
                                 <div class="list-group-item">
 								<input data-toggle="toggle" ng-show="todo.user == homeController.user" type="checkbox" ng-model="todo.completed" ng-change="toggleCompleted(todo)">
 								<span ng-hide="todo == homeController.editingToDo" ng-dblclick="homeController.editTodo(todo)">{{todo.title}}</span>
