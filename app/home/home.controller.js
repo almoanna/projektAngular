@@ -8,6 +8,11 @@ export default class HomeController{
       this.ToDoService = ToDoService;
       this.editingToDo = null;
       this.userFilter = {};
+      this.todos.$loaded().then(this.setStatictics.bind(this));
+      this.userAll = 0;
+      this.userCompleted = 0;
+      this.userInCompleted = 0;
+      this.todos.$watch(this.setStatictics.bind(this));
     }
     addTodo()
     {
@@ -60,6 +65,7 @@ export default class HomeController{
             if(this.canProcessElement(this.todos[i]))
             {
                 this.todos[i].completed = isChecked;
+                this.doneEditing(this.todos[i]);
             }
         }
     }
@@ -87,6 +93,26 @@ export default class HomeController{
         {
             this.userFilter = {user: this.user};
         }
+    }
+    setStatictics()
+    {
+        this.userAll = 0;
+        this.userCompleted = 0;
+
+        for(var i=0;i<this.todos.length;i++)
+        {
+            if(this.user == this.todos[i].user)
+            {
+                this.userAll = this.userAll + 1;
+                if(this.todos[i].completed)
+                {
+                    this.userCompleted = this.userCompleted + 1;
+                   
+                }
+            }
+            this.userInCompleted = this.userAll - this.userCompleted;
+        }
+        
     }
 }
 

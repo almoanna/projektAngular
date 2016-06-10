@@ -5,20 +5,14 @@
         </form>   
       
        
-         <ul id="filters">
-                        <li>
-							<a ng-click="homeController.onChangeTab('user')">Uzytkownik</a>
-						</li>
-						<li>
-							<a ng-click="homeController.onChangeTab('all')">Wszyscy</a>
-						</li>
-        </ul>
+         <button type="button" class="btn btn-primary" ng-click="homeController.onChangeTab('user')">User</button>
+       <button type="button" class="btn btn-primary" ng-click="homeController.onChangeTab('all')">All</button>
     </header>    
     
     <section>
         <li ng-repeat="todo in homeController.todos | filter:homeController.statusFilter | filter:homeController.userFilter" class="list-group">
                                 <div class="list-group-item">
-								<input data-toggle="toggle" ng-show="todo.user == homeController.user" type="checkbox" ng-model="todo.completed" ng-change="toggleCompleted(todo)">
+								<input data-toggle="toggle" ng-show="todo.user == homeController.user" type="checkbox" ng-model="todo.completed" ng-change="homeController.doneEditing(todo)">
 								<span ng-hide="todo == homeController.editingToDo" ng-dblclick="homeController.editTodo(todo)">{{todo.title}}</span>
 								<form ng-submit="homeController.doneEditing(todo)">
 						    	<input ng-show="todo == homeController.editingToDo" ng-model="todo.title" ng-blur="homeController.doneEditing(todo)" autofocus />
