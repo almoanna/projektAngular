@@ -1,33 +1,25 @@
 /*global Firebase */
 
-export default class toDoService
-{
-    constructor($firebaseArray)
-    {
-        this.firebaseArray = $firebaseArray;
-        this.ref = new Firebase("https://angularto.firebaseio.com/");
+export default class toDoService{
+    constructor($firebaseArray){
+       this.firebaseArray = $firebaseArray;
+        this.ref = new Firebase("https://angulartododb.firebaseio.com/");
         this.items = $firebaseArray(this.ref);
     }
-    
-    getAll()
-    {
+    getAll(){
         return this.items;
     }
-    
-    add(value)
-    {
+    add(value){
         this.items.$add({
            'user': value.user,
            'title': value.title,
            'completed': value.completed
         }); 
     }
-    edit(value)
-    {
+    edit(value){
         this.items.$save(value);
     }
-    remove(ref)
-    {
+    remove(ref){
         this.items.$remove(ref);
     }
-}; 
+}

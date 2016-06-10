@@ -1,19 +1,18 @@
-<Em> <div class="col-md-6 well text-center">
-   <div class="input-group input-group-lg">
+<Em><div class="col-md-6 well text-center"> <!-- szerokosc kolumny, szerokosc konteinera 970-->
+    <div class="input-group input-group-lg"> <!-- wzgledna klasa grup-->
       <input 
-    ng-model="homeController.selectedUser" 
+        ng-model="homeController.selectedUser" 
         type="text" 
-        class="form-control text-center" 
+        class="form-control " 
         placeholder="Login"
       />
         
-      <span class="input-group-btn">
+      <span class="input-group-btn"> <!-- przyciski grup wejsciowych-->
         <button 
-          class="btn btn-primary btn-sm" 
-          type="button" 
+          class="btn btn-primary btn-md" 
+          type="button " 
           ui-sref="home({user: homeController.selectedUser})">Wyszukaj!</button>
-      </span>
+      </span> <!-- typ przycisku i jego wielkosc btn -->
      
     </div>
-</div>
-</Em>
+</div> </Em>
