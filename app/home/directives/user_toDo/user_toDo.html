@@ -7,13 +7,28 @@
     
     <section>
         <input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">
-            <ul id="todo-list" class="list-group">
-    						<li ng-repeat="todo in homeController.todos" class="list-group-item">
-    								<input data-toggle="toggle" type="checkbox" ng-model="todo.completed" ng-change="toggleCompleted(todo)">
-    								<label ng-dblclick="editTodo(todo)">{{todo.title}}</label>
-    								<button class="destroy" ng-click="homeController.removeTodo(todo)"></button>
+           <li ng-repeat="todo in homeController.todos | filter:homeController.statusFilter">
+								<input data-toggle="toggle" type="checkbox" ng-model="todo.value.completed" ng-change="toggleCompleted(todo)">
+   								<span ng-hide="todo.editing" ng-dblclick="homeController.editTodo(todo)">{{todo.value.title}}</span>
+								<form ng-submit="homeController.doneEditing(todo)">
+						    	<input ng-show="todo.editing" ng-model="todo.value.title" ng-blur="homeController.doneEditing(todo)" autofocus />
+    							    </form>
+								<button class="destroy" ng-click="homeController.removeTodo(todo)">Destroy</button>
     						</li>
     		</ul>
     </section>
     
 </section>
+<footer>
+    <ul id="filters">
+						<li>
+							<a ng-click="homeController.onChangeStatus('')">Wszystkie</a>
+						</li>
+						<li>
+							<a ng-click="homeController.onChangeStatus('active')">Aktywne</a>
+						</li>
+						<li>
+							<a ng-click="homeController.onChangeStatus('completed')">Zrobione</a>
+						</li>
+					</ul>
+</footer>
