@@ -7,14 +7,14 @@
     
     <section>
         <input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">
-           <li ng-repeat="todo in homeController.todos | filter:homeController.statusFilter">
-								<input data-toggle="toggle" ng-show="todo.value.user == homeController.user" type="checkbox" ng-model="todo.value.completed" ng-change="toggleCompleted(todo)">
-   								<span ng-hide="todo.editing" ng-dblclick="homeController.editTodo(todo)">{{todo.value.title}}</span>
+           <li ng-repeat="todo in tabController.todos">
+								<input data-toggle="toggle" ng-show="todo.user == homeController.user" type="checkbox" ng-model="todo.completed" ng-change="toggleCompleted(todo)">
+								<span ng-hide="todo == homeController.editingToDo" ng-dblclick="homeController.editTodo(todo)">{{todo.title}}</span>
 								<form ng-submit="homeController.doneEditing(todo)">
-						    	<input ng-show="todo.editing" ng-model="todo.value.title" ng-blur="homeController.doneEditing(todo)" autofocus />
+						    	<input ng-show="todo == homeController.editingToDo" ng-model="todo.title" ng-blur="homeController.doneEditing(todo)" autofocus />
     							    </form>
     							    <span>{{todo.value.user}}</span>
-								<button class="destroy" ng-show="todo.value.user == tabController.user" ng-click="homeController.removeTodo(todo)">Destroy</button>
+								<button class="destroy" ng-show="todo.user == homeController.user" ng-click="homeController.removeTodo(todo)">Destroy</button>
     						</li>
     		</ul>
     </section>

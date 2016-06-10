@@ -4,8 +4,9 @@ export default class HomeController{
     {
       this.todos = [];
       this.user = $stateParams.user;
-      this.data = ToDoService.getAll();
+      this.todos = ToDoService.getAll();
       this.ToDoService = ToDoService;
+      this.editingToDo = null;
     }
     addTodo()
     {
@@ -28,25 +29,23 @@ export default class HomeController{
     
     removeTodo(toDo)
     {
-        var index = this.todos.indexOf(toDo);
-        this.todos.splice(index,1);
+        this.ToDoService.remove(toDo);
      }
      editTodo(todo)
     {
-        todo.editing = !todo.editing;
-        this.originalToDo = todo;
+        this.editingToDo = todo;
     }
     
     doneEditing(todo)
     {
-        todo.editing = false;
-        console.log(todo.editing);
+        this.editingToDo = null;
+        this.ToDoService.edit(todo);
     }
     onChangeStatus(status)
     {
         this.statusFilter = (status === 'active') ?
-				{ value:{completed: false }} : (status === 'completed') ?
-				{ value:{completed: true }} : {};
+				{ completed: false } : (status === 'completed') ?
+				{ completed: true } : {};
 				 /*     if(status==='active')
         return completed: false;
         else if(status==='completed')

@@ -2,33 +2,32 @@
 
 export default class toDoService
 {
-    constructor($firebaseObject)
+    constructor($firebaseArray)
     {
-        this.firebaseObject = $firebaseObject;
+        this.firebaseArray = $firebaseArray;
         this.ref = new Firebase("https://angularto.firebaseio.com/");
-        this.ref.push({
-           'user': 'test1',
-           'title':'test1',
-           'completed':'false'
-        });
-        this.elementref = this.ref.push({
-           'user': 'test2',
-           'title':'test2',
-           'completed':'false'
-        }); 
+        this.items = $firebaseArray(this.ref);
     }
     
     getAll()
     {
-        return this.firebaseObject(this.ref);
+        return this.items;
     }
     
     add(value)
     {
-        this.ref.push({
+        this.items.$add({
            'user': value.user,
            'title': value.title,
            'completed': value.completed
         }); 
+    }
+    edit(value)
+    {
+        this.items.$save(value);
+    }
+    remove(ref)
+    {
+        this.items.$remove(ref);
     }
 }; 
