@@ -6,22 +6,26 @@
     </header>    
     
     <section>
-        <input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">
-           <li ng-repeat="todo in tabController.todos">
+        <li ng-repeat="todo in homeController.todos | filter:homeController.statusFilter" class="list-group">
+                                <div class="list-group-item">
 								<input data-toggle="toggle" ng-show="todo.user == homeController.user" type="checkbox" ng-model="todo.completed" ng-change="toggleCompleted(todo)">
 								<span ng-hide="todo == homeController.editingToDo" ng-dblclick="homeController.editTodo(todo)">{{todo.title}}</span>
 								<form ng-submit="homeController.doneEditing(todo)">
 						    	<input ng-show="todo == homeController.editingToDo" ng-model="todo.title" ng-blur="homeController.doneEditing(todo)" autofocus />
     							    </form>
-    							    <span>{{todo.value.user}}</span>
+    							    <span>{{todo.user}}</span>
 								<button class="destroy" ng-show="todo.user == homeController.user" ng-click="homeController.removeTodo(todo)">Destroy</button>
-    						</li>
-    		</ul>
+    						</div>
+    		</li>
     </section>
     
 </section>
 <footer>
+    <input id="toggle-all" ng-model="isAllMarked" type="checkbox" ng-click="homeController.markAll(isAllMarked)">
     <ul id="filters">
+        <li>
+							<a ng-click="homeController.clearAllCompleted()">Zamknac zrobione</a>
+						</li>
 						<li>
 							<a ng-click="homeController.onChangeStatus('')">Wszystkie</a>
 						</li>

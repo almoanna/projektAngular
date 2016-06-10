@@ -52,6 +52,30 @@ export default class HomeController{
            return completed: true;
         else return {};*/
     }
+     markAll(isChecked)
+    {
+        for(var i=0;i<this.todos.length;i++)
+        {
+            if(this.canProcessElement(this.todos[i]))
+            {
+                this.todos[i].completed = isChecked;
+            }
+        }
+    }
+    clearAllCompleted()
+    {
+        for(var i=0;i<this.todos.length;i++)
+        {
+            if(this.canProcessElement(this.todos[i]) && this.todos[i].completed == true)
+            {
+                this.removeTodo(this.todos[i]);
+            }
+        }
+    }
+    canProcessElement(toDo)
+    {
+        return toDo.user == this.user;
+    }
 }
 
 
