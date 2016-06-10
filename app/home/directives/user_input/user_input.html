@@ -1,2 +1,19 @@
-<h1>UserInput</h1>
-<h1>{{home.name}}</h1>
+<Em> <div class="col-md-6 well text-center">
+   <div class="input-group input-group-lg">
+      <input 
+    ng-model="github.selectedUser" 
+        type="text" 
+        class="form-control text-center" 
+        placeholder="Login"
+      />
+        
+      <span class="input-group-btn">
+        <button 
+          class="btn btn-primary btn-sm" 
+          type="button" 
+          ui-sref="github({user: github.selectedUser})">Wyszukaj!</button>
+      </span>
+     
+    </div>
+</div>
+</Em>
