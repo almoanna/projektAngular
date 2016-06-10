@@ -1,19 +1,19 @@
+/*global Firebase */
 export default class HomeController{
-    constructor($scope,$stateParams)
+    constructor($scope,$stateParams, $firebaseObject, ToDoService)
     {
       this.todos = [];
       this.user = $stateParams.user;
+      this.data = ToDoService.getAll();
+      this.ToDoService = ToDoService;
     }
     addTodo()
     {
-        this.todos.push({
-            value:{
-              user: this.user,
-              title: this.userText,
-              completed:false
-           },
-            editing: false
-        });
+        this.ToDoService.add({
+                user: this.user,
+                title: this.userText,
+                completed:false
+            });
     }
     
     onuser()
