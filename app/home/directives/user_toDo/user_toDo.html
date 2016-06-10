@@ -1,1 +1,19 @@
-user to do
+<section class="row">
+    <header>
+        <form id="todo-form" ng-submit="homeController.addTodo()">
+        	<input id="new-todo" class="form-control text-center" ng-model="homeController.userText" ng-disabled="saving" />
+        </form>    
+    </header>    
+    
+    <section>
+        <input id="toggle-all" type="checkbox" ng-model="allChecked" ng-click="markAll(allChecked)">
+            <ul id="todo-list" class="list-group">
+    						<li ng-repeat="todo in homeController.todos" class="list-group-item">
+    								<input data-toggle="toggle" type="checkbox" ng-model="todo.completed" ng-change="toggleCompleted(todo)">
+    								<label ng-dblclick="editTodo(todo)">{{todo.title}}</label>
+    								<button class="destroy" ng-click="homeController.removeTodo(todo)"></button>
+    						</li>
+    		</ul>
+    </section>
+    
+</section>
