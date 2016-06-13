@@ -7,6 +7,12 @@
         </form>  
         <button type="button" class="btn btn-primary btn-sm" ng-click="homeController.onChangeTab('user')">Uzytkownik wyszukiwany</button>
        <button type="button" class="btn btn-primary btn-sm" ng-click="homeController.onChangeTab('all')">Wszyscy</button>
+ 
+    	<button type="button" class="btn btn-primary btn-sm" ng-click="homeController.clearAllCompleted()">Usun zroione</button>
+     	<button type="button" class="btn btn-primary btn-sm" ng-click="homeController.onChangeStatus('')">Wszystkie</button>
+     	<button type="button" class="btn btn-primary btn-sm" ng-click="homeController.onChangeStatus('active')">Aktywne</button>
+    	<button type="button" class="btn btn-primary btn-sm" ng-click="homeController.onChangeStatus('completed')">Zrobione</button> 
+    	</div>
     </header>    
     
     <section>
@@ -33,10 +39,6 @@
     <div class="checkbox">
   		<label><input id="toggle-all" ng-model="isAllMarked" type="checkbox" ng-click="homeController.markAll(isAllMarked)">Zaznacz wszystkie</label>
 	</div>
-    	<button type="button" class="btn btn-primary btn-sm" ng-click="homeController.clearAllCompleted()">Usun zroione</button>
-    	<button type="button" class="btn btn-primary btn-sm" ng-click="homeController.onChangeStatus('')">Wszystkie</button>
-    	<button type="button" class="btn btn-primary btn-sm" ng-click="homeController.onChangeStatus('active')">Aktywne</button>
-    	<button type="button" class="btn btn-primary btn-sm" ng-click="homeController.onChangeStatus('completed')">Zrobione</button>
 		</p>
 </section>
     

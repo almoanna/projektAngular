@@ -14,7 +14,7 @@ export default class HomeController {
 
     }
     addTodo() {
-         console.log(this.user+" "+this.userText);
+        // console.log(this.user+" "+this.userText);
         this.ToDoService.add({
             user: this.user,
             title: this.userText,

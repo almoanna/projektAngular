@@ -1,9 +1,13 @@
-<h2>All</h2>
-<h3>Length {{homeController.todos.length}}</h3>
-<h3>Completed {{(homeController.todos | filter : { completed: true }).length}}</h3>
-<h3>InCompleted {{(homeController.todos | filter : { completed: false }).length}}</h3>
-
-<h2>User</h2>
-<h3>Length {{homeController.userAll}}</h3>
-<h3>Completed {{homeController.userCompleted}}</h3>
-<h3>InCompleted {{homeController.userInCompleted}}</h3> 
+<div class="container">
+    <i><b><h3>All</h3></b></i>
+<h5>Ilosc wszystkich taskow: {{homeController.todos.length}}</h5>
+<h5>Zrobione: {{(homeController.todos | filter : { completed: true }).length}}</h5>
+<h5>Do zrobienia: {{(homeController.todos | filter : { completed: false }).length}}</h5>
+</div>
+<hr>
+<div class="container">
+<i><b><h3>User</h3></b></i>
+<h5>Ilosc taskow: {{homeController.userAll}}</h5>
+<h5>Zrobionych: {{homeController.userCompleted}}</h5>
+<h5>Do zrobienia: {{homeController.userInCompleted}}</h5> 
+</div>
